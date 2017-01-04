@@ -113,12 +113,13 @@ model.fit(X_train, y_train, nb_epoch=nb_epoch, batch_size=batch_size, verbose = 
 # Predicting the test set
 test_files = [im for im in os.listdir(TEST_DIR)]
 test = np.ndarray((len(test_files), ROWS, COLS, CHANNELS), dtype=np.uint8)
-test = test.reshape(test.shape[0], -1, 1)
-print test.shape
 
 
 for i, im in enumerate(test_files): 
     test[i] = read_image(TEST_DIR+im)
+
+test = test.reshape(test.shape[0], -1, 1)
+print test.shape
     
 test_preds = model.predict(test, verbose=1)
 
